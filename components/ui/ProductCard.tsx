@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import { Heart } from 'lucide-react';
 import Link from 'next/link';
+import { Product } from '@/types/user';
 import { formatCurrency } from '@/lib/utils';
 
 export default function ProductCard({ product }: { product: Product }) {
