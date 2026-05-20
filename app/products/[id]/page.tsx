@@ -11,8 +11,11 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
 
 export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const product = await supabase.from('products').select('*').eq('id', id).single().maybeSingle(); // Esempio
-
+  const { data: product } = await supabase
+  .from('products')
+  .select('*')
+  .eq('id', id)
+  .maybeSingle();
   if (!product) return notFound();
 
   return (
