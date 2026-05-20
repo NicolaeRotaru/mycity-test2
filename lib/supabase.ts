@@ -2,15 +2,14 @@
 import { createClient } from '@supabase/supabase-js';
 import { toast } from 'sonner';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  console.error("Errore configurazione Supabase: Manca URL o Key");
+  throw new Error("Manca NEXT_PUBLIC_SUPABASE_URL o NEXT_PUBLIC_SUPABASE_ANON_KEY");
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
 // Funzione helper per login semplice
 export async function loginWithEmail(email: string, password: string) {
   try {
